@@ -1,0 +1,3 @@
+﻿CREATE USER 'P4user'@'%' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE ON p4database.* TO 'P4user'@'%';
+FLUSH PRIVILEGES;

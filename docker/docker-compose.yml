@@ -1,0 +1,33 @@
+﻿version: '3.8'
+services:
+  web:
+    build: ./apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./apache/site:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: p4database
+      MYSQL_USER: P4user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  dns:
+    image: internetsystemsconsortium/bind9:9.16
+    volumes:
+      - ./bind:/etc/bind
+    ports:
+      - "53:53"
+      - "53:53/udp"
+
+volumes:
+  db_data:

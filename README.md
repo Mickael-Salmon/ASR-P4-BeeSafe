@@ -27,6 +27,31 @@ Pour exécuter ce projet, vous aurez besoin de :
 - Docker et Docker Compose pour faciliter le déploiement des services.
 - Accès à un système de gestion de version pour cloner ce repository (Git).
 
+## Architecture Docker
+
+```
+BeeSafe/
+│
+├── docker-compose.yml
+│
+├── apache/
+│   ├── Dockerfile
+│   ├── 000-default.conf
+│   └── site/
+│       ├── index.php
+│       ├── main.css
+│       └── vars.php
+│
+├── mysql/
+│   ├── Dockerfile
+│   ├── data.sql
+│   └── schema.sql
+│
+└── bind/
+    ├── named.conf.local
+    └── db.beesafe.co
+```
+
 ## Déploiement avec Docker 🐳
 
 1. **Clonez le repository** :
@@ -43,7 +68,7 @@ Utilisez Docker Compose pour démarrer les services sur les différentes machine
 docker-compose up --build
 ```
 
-Accédez au site :
+2. Accédez au site WEB
 
 Une fois les services démarrés, le site sera accessible via http://localhost.
 
