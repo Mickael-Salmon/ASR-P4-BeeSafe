@@ -1,0 +1,43 @@
+﻿version: '3.8'
+services:
+  web:
+    build: ./apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./apache/site:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - beesafenet
+
+  db:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: p4database
+      MYSQL_USER: P4user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - beesafenet
+
+  dns:
+    image: internetsystemsconsortium/bind9:9.16
+    volumes:
+      - ./bind:/etc/bind
+    ports:
+      - "5454:53"
+      - "5454:53/udp"
+    networks:
+      - beesafenet
+
+networks:
+  beesafenet:
+    driver: bridge
+
+volumes:
+  db_data:

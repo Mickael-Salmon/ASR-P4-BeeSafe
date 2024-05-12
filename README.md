@@ -51,7 +51,31 @@ BeeSafe/
     ├── named.conf.local
     └── db.beesafe.co
 ```
+## Architecture fichiers
 
+```
+BeeSafe/
+│
+├── docker-compose.yml        # Fichier Docker Compose principal
+│
+├── apache/                   # Contient tout ce qui est nécessaire pour le serveur web
+│   ├── Dockerfile            # Dockerfile pour construire l'image Apache
+│   ├── 000-default.conf      # Configuration du Virtual Host Apache
+│   └── site/                 # Dossier contenant le site web
+│       ├── index.php         # Page d'accueil PHP
+│       ├── main.css          # Feuille de style CSS
+│       └── vars.php          # Variables de configuration de la base de données
+│
+├── mysql/                    # Contient les scripts SQL et le Dockerfile MySQL
+│   ├── Dockerfile            # Dockerfile pour construire l'image MySQL
+│   ├── schema.sql            # Script SQL pour créer la structure de la base de données
+│   └── data.sql              # Script SQL pour peupler la base de données
+│
+└── bind/                     # Contient les fichiers de configuration DNS Bind9
+    ├── named.conf.local      # Fichier de configuration DNS principal
+    └── db.beesafe.co         # Fichier de zone pour le domaine
+
+```
 ## Déploiement avec Docker 🐳
 
 1. **Clonez le repository** :

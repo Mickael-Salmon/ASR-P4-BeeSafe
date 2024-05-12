@@ -7,6 +7,6 @@
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      ns1.beesafe.co.
-ns1     IN      A       192.0.2.1
-@       IN      A       192.0.2.1
-www     IN      A       192.0.2.1
+ns1     IN      A       127.0.0.1
+@       IN      A       127.0.0.1
+www     IN      A       127.0.0.1
