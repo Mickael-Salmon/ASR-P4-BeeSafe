@@ -1,4 +1,5 @@
 ﻿version: '3.8'
+
 services:
   web:
     build: ./apache
@@ -6,10 +7,14 @@ services:
       - "80:80"
     volumes:
       - ./apache/site:/var/www/html
+    environment:
+      - DATABASE_HOST=db
+      - MYSQL_SOCKET=/var/run/mysqld/mysqld.sock
     depends_on:
       - db
     networks:
-      - beesafenet
+      beesafenet:
+        ipv4_address: 192.168.32.4
 
   db:
     build: ./mysql
@@ -18,26 +23,30 @@ services:
       MYSQL_DATABASE: p4database
       MYSQL_USER: P4user
       MYSQL_PASSWORD: password
+      MYSQL_UNIX_SOCKET: /var/run/mysqld/mysqld.sock
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - beesafenet
+      beesafenet:
+        ipv4_address: 192.168.32.2
 
   dns:
     image: internetsystemsconsortium/bind9:9.16
     volumes:
       - ./bind:/etc/bind
-    ports:
-      - "5454:53"
-      - "5454:53/udp"
     networks:
-      - beesafenet
+      beesafenet:
+        ipv4_address: 192.168.32.3
+    command: ["/usr/sbin/named", "-c", "/etc/bind/named.conf", "-g", "-u", "bind"]
 
 networks:
   beesafenet:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.32.0/24
 
 volumes:
   db_data:

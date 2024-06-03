@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
         <head>
             <title>BeeSafe</title>
@@ -20,7 +20,13 @@
     $sql = "SELECT id, title, content FROM pages";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+    /**
+     * Check if the result is not false and if the number of rows in the result is greater than 0.
+     *
+     * @param mixed $result The result of a database query.
+     * @return bool Returns true if the result is not false and the number of rows is greater than 0, otherwise returns false.
+     */
+    if ($result !== false && $result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             $id = $row["id"];
@@ -37,8 +43,8 @@
     <div class="header">
         <h1>BeeSafe</h1>
         <p>A website created by me.</p>
-        <p><?php echo $content ?></p>
-    </div>
+        <p><?php echo isset($content) ? $content : ''; ?></p>
+        </div>
 
     <div class="navbar">
         <a href="#">Link</a>

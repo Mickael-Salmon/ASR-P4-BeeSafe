@@ -1,12 +1,11 @@
-﻿$TTL    604800
-@       IN      SOA     ns1.beesafe.co. admin.beesafe.co. (
-                              3         ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
-;
-@       IN      NS      ns1.beesafe.co.
-ns1     IN      A       127.0.0.1
-@       IN      A       127.0.0.1
-www     IN      A       127.0.0.1
+$TTL 86400
+@    IN    SOA    ns.beesafe.co. admin.beesafe.co. (
+        2024060101 ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        1209600    ; Expire
+        86400 )    ; Minimum TTL
+
+@           IN    NS     ns.beesafe.co.
+ns          IN    A      192.168.32.3
+www         IN    A      192.168.32.4
