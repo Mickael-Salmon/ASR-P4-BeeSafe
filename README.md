@@ -3,6 +3,8 @@
 
 Ce repository GitHub est un fork qui héberge le code source du site web de BeeSafe, conçu pour être déployé dans une architecture 3-tiers.
 
+Ce projet est fictif et le principal intérêt de ce repository est de suivre la mise en place d'une architecture N3, spécialement l'utilisation de BIND9 dans un container et l'utilisation de DNSMASQ sur la machine host.
+
 La branche `master` contient uniquement les sources du site web, les scripts sql et les fichiers docker pour réaliser le déploiement. Ces sources sont écrites avec le langage PHP et nécessitent donc une stack [LAMP](https://fr.wikipedia.org/wiki/LAMP)
 
 Ce déploiement permet de séparer les responsabilités entre les différents services pour optimiser la maintenance et la montée en charge.
@@ -23,7 +25,7 @@ Le site est conçu pour fonctionner sur trois serveurs distincts pour garantir u
 
 ## Prérequis 📋
 
-Pour exécuter ce projet, vous aurez besoin de :
+Pour exécuter ce projet, nous utilisons :
 - Docker et Docker Compose pour faciliter le déploiement des services.
 - Accès à un système de gestion de version pour cloner ce repository (Git).
 
@@ -94,7 +96,7 @@ docker-compose up --build
 
 2. Accédez au site WEB
 
-Une fois les services démarrés, le site sera accessible via http://localhost.
+Une fois les services démarrés, le site sera accessible via http://www.beesafe.co
 
 Licence 📄
 Ce projet est distribué sous licence MIT, permettant une utilisation large et gratuite à tous les utilisateurs.
